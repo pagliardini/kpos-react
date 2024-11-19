@@ -1,8 +1,18 @@
+// src/components/Input.tsx
 import React, { useState } from 'react';
-interface InputProps { onAddItem: (item: any) => void; }
-const Input: React.FC  = ({ onAddItem }) => { const [codigo, setCodigo] = useState('');
+
+interface InputProps {
+    onAddItem: (item: any) => void;
+    setInputTexto: (texto: string) => void;  // Prop para actualizar el estado de inputTexto en Ventas
+}
+
+const Input: React.FC<InputProps> = ({ onAddItem, setInputTexto }) => {
+    const [codigo, setCodigo] = useState('');
+
     const handleChangeCodigo = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCodigo(e.target.value);
+        const value = e.target.value;
+        setCodigo(value);
+        setInputTexto(value);  // Actualizar el estado en Ventas
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -24,6 +34,7 @@ const Input: React.FC  = ({ onAddItem }) => { const [codigo, setCodigo] = useSta
                 console.error("Error al obtener los datos:", error);
             } finally {
                 setCodigo('');
+                setInputTexto('');  // Limpiar el estado en Ventas
             }
         }
     };
@@ -42,4 +53,5 @@ const Input: React.FC  = ({ onAddItem }) => { const [codigo, setCodigo] = useSta
         </div>
     );
 };
-export default Input;  
+
+export default Input;

@@ -1,25 +1,10 @@
 import React from 'react';
-
-interface Item {
-    id: string;
-    codigo: string;
-    nombre: string;
-    precio: number;
-    cantidad: number; // Agregamos la propiedad cantidad
-}
-
-interface ListaProps {
-    items: Item[];
-    onUpdateItem: (updatedItems: Item[]) => void; // Cambiado para aceptar un arreglo
-}
-
-const Lista: React.FC<ListaProps> = ({ items, onUpdateItem }) => {
-
-    const handleCantidadChange = (itemId: string, newCantidad: number) => {
-        const updatedItems = items.map(item =>
-            item.id === itemId ? { ...item, cantidad: newCantidad } : item
-        );
-        onUpdateItem(updatedItems); // Actualizamos la lista de items
+interface Item { id: string; codigo: string; nombre: string; precio: number; cantidad: number; }
+interface ListaProps { items: Item[]; onUpdateItem: (itemId: string, newCantidad: number) => void; }
+const Lista: React.FC  = ({ items, onUpdateItem }) => {
+    const handleCantidadChange = (itemId: string, e: React.ChangeEvent<HTMLInputElement>) => {
+        const newCantidad = Number(e.target.value);
+        onUpdateItem(itemId, newCantidad);
     };
 
     return (
@@ -34,8 +19,8 @@ const Lista: React.FC<ListaProps> = ({ items, onUpdateItem }) => {
                         <th>Código</th>
                         <th>Nombre</th>
                         <th>Precio</th>
-                        <th>Cantidad</th> {/* Nueva columna */}
-                        <th>Subtotal</th> {/* Nueva columna */}
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,10 +34,10 @@ const Lista: React.FC<ListaProps> = ({ items, onUpdateItem }) => {
                                     type="number"
                                     value={item.cantidad}
                                     min="1"
-                                    onChange={(e) => handleCantidadChange(item.id, Number(e.target.value))}
+                                    onChange={(e) => handleCantidadChange(item.id, e)}
                                 />
-                            </td> {/* Campo de entrada para la cantidad */}
-                            <td>${(item.precio * item.cantidad).toFixed(2)}</td> {/* Calculamos el subtotal */}
+                            </td>
+                            <td>${(item.precio * item.cantidad).toFixed(2)}</td>
                         </tr>
                     ))}
                     </tbody>
@@ -61,5 +46,4 @@ const Lista: React.FC<ListaProps> = ({ items, onUpdateItem }) => {
         </div>
     );
 };
-
-export default Lista;
+export default Lista;  

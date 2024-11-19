@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
-import Input from './components/Input.tsx';
-import Lista from './components/Lista.tsx';
-
-const Ventas: React.FC = () => {
-    const [items, setItems] = useState<any[]>([]);  // Estado para mantener la lista de productos
-
-    const handleSetItems = (newItems: any[]) => {
-        setItems(newItems);  // Función para agregar los productos
+import React, { useState } from 'react'; import Input from './components/Input'; import Lista from './components/Lista';
+const Ventas: React.FC = () => { const [items, setItems] = useState<Item[]>([]);
+    const handleAddItem = (newItem: Item) => {
+        const existingItemIndex = items.findIndex(item => item.id === newItem.id);
+        if (existingItemIndex !== -1) {
+            const updatedItems = [...items];
+            updatedItems[existingItemIndex].cantidad += 1;
+            setItems(updatedItems);
+        } else {
+            setItems([...items, newItem]);
+        }
     };
 
-    const handleUpdateItem = (updatedItems: any[]) => {
-        setItems(updatedItems); // Actualiza los items cuando cambia la cantidad
+    const handleUpdateItem = (itemId: string, newCantidad: number) => {
+        const updatedItems = items.map(item =>
+            item.id === itemId ? { ...item, cantidad: newCantidad } : item
+        );
+        setItems(updatedItems);
     };
 
     return (
         <div>
-            <h1>Página de Ventas</h1>
-            <Input onSetItems={handleSetItems} items={items} />  {/* Pasamos items y onSetItems */}
-            <Lista items={items} onUpdateItem={handleUpdateItem} />  {/* Mostramos la lista de productos */}
+            <Input onAddItem={handleAddItem} />
+            <Lista items={items} onUpdateItem={handleUpdateItem} />
         </div>
     );
 };
-
-export default Ventas;
+export default Ventas;  

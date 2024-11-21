@@ -1,0 +1,7 @@
+.navbar {
+    padding: 10px;
+    background-color: #222831;
+    --bs-navbar-color: #ffffff;
+    --bs-navbar-active-color: #ffffff;
+    --bs-navbar-brand-color: #fff
+  }

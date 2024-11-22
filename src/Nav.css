@@ -1,7 +1,55 @@
+/* Estilo general para la barra de navegación */
 .navbar {
-    padding: 10px;
-    background-color: #222831;
-    --bs-navbar-color: #ffffff;
-    --bs-navbar-active-color: #ffffff;
-    --bs-navbar-brand-color: #fff
-  }
+  padding: 10px;
+  background-color: #222831; /* Color de fondo de la navbar */
+  --bs-navbar-color: #ffffff; /* Color del texto de la navbar */
+  --bs-navbar-active-color: #ffffff; /* Color del texto activo en la navbar */
+  --bs-navbar-brand-color: #fff; /* Color del texto de la marca */
+}
+
+/* Estilo para los enlaces en la navbar */
+.nav-link {
+  color: #ffffff; /* Color del texto por defecto */
+  transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+/* Efecto hover para los enlaces en la navbar */
+.nav-link:hover {
+  color: #00ADB5; /* Cambia el color al pasar el mouse */
+}
+
+/* Estilo para los enlaces activos en la navbar */
+.nav-link.active {
+  color: #ffffff; /* Color del texto activo */
+  font-weight: bold; /* Resaltar el texto activo */
+  background-color: rgba(0, 123, 255, 0.1); /* Fondo ligero para el enlace activo */
+}
+
+/* Estilo para el enlace del dropdown */
+.nav-item.dropdown .dropdown-toggle {
+  color: #ffffff; /* Cambia el color del texto del enlace del dropdown */
+  font-weight: bold; /* Cambia el peso de la fuente */
+}
+
+/* Estilo para el menú desplegable */
+.dropdown-menu {
+  background-color: #f8f9fa; /* Color de fondo del dropdown */
+  border: 1px solid #ced4da; /* Borde del dropdown */
+}
+
+/* Estilo para los elementos dentro del dropdown */
+.dropdown-item {
+  color: #212529; /* Color del texto de los elementos dentro del dropdown */
+}
+
+/* Cambiar el color al pasar el mouse sobre los elementos del dropdown */
+.dropdown-item:hover {
+  background-color: #e9ecef; /* Color de fondo al pasar el mouse sobre un elemento */
+  color: #0056b3; /* Color del texto al pasar el mouse sobre un elemento */
+}
+
+/* Estilo para el elemento activo en el dropdown (si es necesario) */
+.dropdown-item.active {
+  background-color: #007bff; /* Color de fondo para el elemento activo en el dropdown */
+  color: white; /* Color del texto para el elemento activo en el dropdown */
+}
